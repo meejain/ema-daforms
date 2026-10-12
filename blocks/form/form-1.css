@@ -1,0 +1,281 @@
+/*
+ * Copyright 2026 Adobe. All rights reserved.
+ * This file is licensed to you under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License. You may obtain a copy
+ * of the License at http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+ * OF ANY KIND, either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
+ */
+
+/* form-1: Grace "Coatings newsletter sign-up". Mobile first; desktop from 992px. */
+
+/* The source's error messages use Roboto Bold Italic */
+@font-face {
+  font-family: roboto;
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../../fonts/roboto-bold-italic.woff2') format('woff2');
+}
+
+/* Container: no card, full-bleed section, 10px side gutter on mobile */
+main .form-container:has(.form-1-form) {
+  padding: 0;
+  background-color: transparent;
+}
+
+main > .section > div.form-wrapper:has(.form-1-form) {
+  max-width: none;
+  padding: 0 10px;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+main .form:has(.form-1-form) {
+  background-color: transparent;
+}
+
+main .form form:has(.form-1-form) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px 40px;
+  margin: 0 auto;
+}
+
+main .form form:has(.form-1-form) > .hidden-wrapper {
+  display: none;
+}
+
+main .form form .field-wrapper.form-1-form {
+  position: relative;
+  grid-column: 1 / -1;
+  margin: 0;
+  color: #000;
+}
+
+/* "Contact Info" heading */
+main .form form .form-1-text-1 p {
+  margin: 0 0 10px;
+  color: #000;
+  font-family: "Roboto Slab", roboto, sans-serif;
+  font-size: 30px;
+  font-weight: 300;
+  line-height: 51px;
+}
+
+/* Labels */
+main .form .form-1-form > label {
+  display: block;
+  width: fit-content;
+  margin: 0 0 10px;
+  padding: 0;
+  color: #000;
+  font-family: roboto, roboto-fallback, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+
+  /* 18.2px snapped to the 1/64px layout grid, as the source renders it */
+  line-height: 18.1875px;
+}
+
+/* The source writes the asterisk straight after the text, in the label colour */
+main .form .form-1-form[data-required="true"] > label::after {
+  padding-inline-start: 0;
+  color: #000;
+}
+
+/* Text inputs */
+main .form .form-1-form input {
+  height: 44px;
+  margin: 0;
+  padding: 12px 15px;
+  border: 1px solid rgb(206 212 218);
+  border-radius: 0;
+  background-color: #fff;
+  box-shadow: none;
+  outline: none;
+  color: #000;
+  font-family: arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+main .form .form-1-form input::placeholder {
+  color: #000;
+}
+
+main .form .form-1-phone-number input::placeholder {
+  color: rgb(117 117 117);
+}
+
+main .form .form-1-form input:hover {
+  border-color: rgb(206 212 218);
+}
+
+main .form .form-1-form input:focus {
+  border-color: rgb(39 133 60);
+  box-shadow: 0 0 0 2px rgb(39 133 60 / 25%);
+}
+
+/* Selects (the source enhances them with Chosen: 1px inset box) */
+main .form .form-1-form select {
+  width: calc(100% - 2px);
+  height: 44px;
+  margin: 1px;
+  padding: 0 0 0 15px;
+  border: 1px solid rgb(206 212 218);
+  border-radius: 0;
+  appearance: none;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23444' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 15px center;
+  box-shadow: inset 0 0 3px #fff, 0 1px 1px rgb(0 0 0 / 10%);
+  outline: none;
+  color: rgb(68 68 68);
+  font-family: roboto, roboto-fallback, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+main .form .form-1-form select:hover {
+  border-color: rgb(206 212 218);
+}
+
+/* A select hidden by a rule keeps the source's native-select style */
+main .form .form-1-form[data-visible="false"] select {
+  padding: 12px 15px;
+  box-shadow: none;
+  color: #000;
+  font-family: arial, sans-serif;
+  font-size: 16px;
+  line-height: normal;
+}
+
+/* Errors sit in the row gap, under the control, without moving the layout.
+   Only text inputs turn red; selects keep their normal look. */
+main .form form .form-1-form.field-invalid input {
+  border-color: rgb(171 6 52);
+  box-shadow: 0 0 0 2px rgb(214 35 12 / 25%);
+  color: rgb(171 6 52);
+}
+
+main .form form .form-1-form.field-invalid input::placeholder {
+  color: rgb(171 6 52);
+}
+
+main .form form .form-1-phone-number.field-invalid input::placeholder {
+  color: rgb(117 117 117);
+}
+
+main .form form .form-1-form.field-invalid .field-description {
+  position: absolute;
+  top: auto;
+  bottom: -22px;
+  left: 0;
+  margin: 0;
+  color: rgb(171 6 52);
+  font-family: roboto, roboto-fallback, sans-serif;
+  font-size: 12px;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 15.6px;
+}
+
+/* Warning triangle before the message (Font Awesome Free "triangle-exclamation", CC BY 4.0) */
+main .form form .form-1-form.field-invalid .field-description::before {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 13.5px;
+  margin-right: 5px;
+  vertical-align: -1.5px;
+  background-color: currentcolor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7.2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8.2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24v112c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0-64 0 32 32 0 1 0 64 0z'/%3E%3C/svg%3E") no-repeat center bottom / 12px 12px;
+}
+
+/* Submit: full width on mobile, directly under the last field (no row gap) */
+main .form form .field-wrapper.form-1-submit {
+  margin-top: -30px;
+}
+
+main .form .form-1-submit button {
+  width: 100%;
+  height: auto;
+  padding: 13px;
+  border: 0;
+  border-radius: 0;
+  background: rgb(122 193 67);
+  color: #000;
+  font-family: "Roboto Slab", roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
+}
+
+main .form form .form-1-submit button:hover {
+  border: 0;
+  background: rgb(39 133 60);
+  color: #fff;
+}
+
+@media (width >= 992px) {
+  main > .section > div.form-wrapper:has(.form-1-form) {
+    padding: 0;
+  }
+
+  main .form form:has(.form-1-form) {
+    width: calc(min(100%, 1280px) * 7 / 12 - 40px);
+    row-gap: 45px;
+  }
+
+  main .form form .field-wrapper.form-1-first-name,
+  main .form form .field-wrapper.form-1-last-name,
+  main .form form .field-wrapper.form-1-email-address,
+  main .form form .field-wrapper.form-1-phone-number,
+  main .form form .field-wrapper.form-1-job-title,
+  main .form form .field-wrapper.form-1-company,
+  main .form form .field-wrapper.form-1-country,
+  main .form form .field-wrapper.form-1-state,
+  main .form form .field-wrapper.form-1-city,
+  main .form form .field-wrapper.form-1-zip {
+    grid-column: auto / span 1;
+  }
+
+  main .form form .form-1-text-1 p {
+    margin-bottom: -5px;
+  }
+
+  main .form .form-1-form > label {
+    line-height: 23.8px;
+  }
+
+  main .form .form-1-form input {
+    padding: 14px 15px;
+    font-size: 12px;
+    line-height: 12px;
+  }
+
+  main .form .form-1-form[data-visible="false"] select {
+    padding: 14px 15px;
+    font-size: 12px;
+  }
+
+  main .form form .form-1-form.field-invalid .field-description {
+    bottom: -28px;
+    line-height: 20.4px;
+  }
+
+  main .form form .field-wrapper.form-1-submit {
+    justify-self: end;
+    width: 175px;
+    margin-top: -45px;
+  }
+
+  main .form .form-1-submit button {
+    width: 175px;
+    padding: 18px 30px;
+  }
+}
